@@ -7,10 +7,6 @@ public class Visitador extends Usuario {
         //TODO Auto-generated constructor stub
     }
 
-    @Override
-    public void saludar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saludar'");
-    }
+
     
 }

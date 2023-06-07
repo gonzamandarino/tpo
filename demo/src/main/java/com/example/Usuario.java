@@ -17,5 +17,4 @@ public abstract class Usuario {
         return email;
     }
 
-    public abstract void saludar();
 }
