@@ -50,9 +50,8 @@ public class Seguimiento {
     }
 
     // Método para recordar partes
-    public void recordarPartes(Visitador v, Cliente c, int dias) {
-        // Lógica para recordar partes
-        // Utiliza el visitador y cliente especificados y el número de días para realizar las operaciones necesarias
+    public void recordarPartes(Cliente c, int dias) {
+        recordatorio.recordar(visitador, c, dias);
     }
 
     // Método para cambiar el recordatorio

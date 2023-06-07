@@ -1,6 +1,7 @@
 package com.example;
 
 public class Animal {
+    private String nombre;
     private int edad;
     private double altura;
     private double peso;
@@ -8,7 +9,8 @@ public class Animal {
     private boolean salvaje;
 
     // Constructor
-    public Animal(int edad, double altura, double peso, double condicion, boolean salvaje) {
+    public Animal(String nombre, int edad, double altura, double peso, double condicion, boolean salvaje) {
+        this.nombre = nombre;
         this.edad = edad;
         this.altura = altura;
         this.peso = peso;
@@ -17,6 +19,14 @@ public class Animal {
     }
 
     // Métodos getter y setter para acceder a los atributos privados
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+ 
     public int getEdad() {
         return edad;
     }
