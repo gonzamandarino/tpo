@@ -6,16 +6,16 @@ public class Animal {
     private double altura;
     private double peso;
     private double condicion;
-    private boolean salvaje;
+    private Estado estado;
 
     // Constructor
-    public Animal(String nombre, int edad, double altura, double peso, double condicion, boolean salvaje) {
+    public Animal(String nombre, int edad, double altura, double peso, double condicion, Estado estado) {
         this.nombre = nombre;
         this.edad = edad;
         this.altura = altura;
         this.peso = peso;
         this.condicion = condicion;
-        this.salvaje = salvaje;
+        this.estado = estado;
     }
 
     // Métodos getter y setter para acceder a los atributos privados
@@ -59,11 +59,15 @@ public class Animal {
         this.condicion = condicion;
     }
 
-    public boolean isSalvaje() {
-        return salvaje;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setSalvaje(boolean salvaje) {
-        this.salvaje = salvaje;
+    public void setEstado(Estado e) {
+        this.estado = e;
+    }
+
+    public void adoptar(Cliente c){
+        getEstado().adoptar(c,this);
     }
 }

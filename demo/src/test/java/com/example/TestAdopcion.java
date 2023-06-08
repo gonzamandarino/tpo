@@ -26,9 +26,10 @@ public class TestAdopcion {
     @Test
     public void testAdoptar_AnimalSalvaje_NoSePuedeAdoptar() {
         // Arrange
+        List<Animal> listaAnimales = new ArrayList<>();
         Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
-                "123456789", "Empleado", "Tiene otras mascotas", null);
-        Animal animal = new Animal("León", 5, 1.2, 150.0, 8.5, true);
+                "123456789", "Empleado", "Tiene otras mascotas", listaAnimales);
+        Animal animal = new Animal("León", 5, 1.2, 150.0, 8.5, new Salvaje());
         String motivoAdopcion = "Quiero un compañero para mi perro";
         String tipoInteresado = "Perros";
         Adopcion adopcion = new Adopcion(cliente, animal, motivoAdopcion, tipoInteresado);
@@ -39,21 +40,41 @@ public class TestAdopcion {
         // Assert
         String expectedOutput = "No se pueden realizar adopciones de animales salvajes.";
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        assertEquals(0,cliente.getAnimalesAdoptados().size());
     }
     
     @Test
+    public void testAdoptar_AnimalEnTratamiento_NoSePuedeAdoptar() {
+        // Arrange
+        List<Animal> listaAnimales = new ArrayList<>();
+        Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
+                "123456789", "Empleado", "Tiene otras mascotas", listaAnimales);
+        Animal animal = new Animal("León", 5, 1.2, 150.0, 8.5, new EnTratamiento());
+        String motivoAdopcion = "Quiero un compañero para mi perro";
+        String tipoInteresado = "Perros";
+        Adopcion adopcion = new Adopcion(cliente, animal, motivoAdopcion, tipoInteresado);
+        
+        // Act
+        adopcion.adoptar();
+        
+        // Assert
+        String expectedOutput = "No se pueden realizar adopciones de animales en tratamiento.";
+        assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        assertEquals(0,cliente.getAnimalesAdoptados().size());
+    }
+
+
+    @Test
     public void testAdoptar_MaximoAnimalesAdoptados_NoSePuedeAdoptar() {
         // Arrange
-        Animal animal = new Animal("Perro", 5, 1.2, 150.0, 8.5, false);
-        Animal animal2 = new Animal("Gato", 5, 1.2, 150.0, 8.5, false);
+        Animal animal = new Animal("Perro", 5, 1.2, 150.0, 8.5, new Domestico());
+        Animal animal2 = new Animal("Gato", 5, 1.2, 150.0, 8.5, new Domestico());
         List<Animal> listaAnimales = new ArrayList<>();
         listaAnimales.add(animal);
         listaAnimales.add(animal2);
         Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
                 "123456789", "Empleado", "Tiene otras mascotas", listaAnimales);
-        cliente.getAnimalesAdoptados().add(new Animal("Perro", 3, 0.8, 15.0, 9.0, false));
-        cliente.getAnimalesAdoptados().add(new Animal("Gato", 2, 0.5, 5.0, 8.0, false));
-        Animal animal3 = new Animal("Conejo", 1, 0.3, 2.0, 7.5, false);
+        Animal animal3 = new Animal("Conejo", 1, 0.3, 2.0, 7.5, new Domestico());
         String motivoAdopcion = "Me encantan los conejos";
         String tipoInteresado = "Conejos";
         Adopcion adopcion = new Adopcion(cliente, animal3, motivoAdopcion, tipoInteresado);
@@ -64,6 +85,7 @@ public class TestAdopcion {
         // Assert
         String expectedOutput = "No se pueden realizar mas adopciones.";
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        assertEquals(2,cliente.getAnimalesAdoptados().size());
     }
     
     @Test
@@ -72,7 +94,7 @@ public class TestAdopcion {
         List<Animal> listaAnimales = new ArrayList<>();
         Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
                 "123456789", "Empleado", "Tiene otras mascotas", listaAnimales);
-        Animal animal = new Animal("Perro", 2, 0.6, 10.0, 9.0, false);
+        Animal animal = new Animal("Perro", 2, 0.6, 10.0, 9.0, new Domestico());
         String motivoAdopcion = "Quiero un compañero para mi perro";
         String tipoInteresado = "Perros";
         Adopcion adopcion = new Adopcion(cliente, animal, motivoAdopcion, tipoInteresado);
@@ -83,6 +105,7 @@ public class TestAdopcion {
         // Assert
         String expectedOutput = "Animal Perro adoptado por Juan Pérez";
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
+        assertEquals(1,cliente.getAnimalesAdoptados().size());
     }
 }
 

@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.List;
 
 public class Adopcion {
     private Cliente cliente;
@@ -19,20 +18,11 @@ public class Adopcion {
     // Método adoptar
     public void adoptar() {
         
-        if(animal.isSalvaje()){
-            System.out.println("No se pueden realizar adopciones de animales salvajes.");
-        }else{
-            if(cliente.getAnimalesAdoptados().size() >= 2){
-                System.out.println("No se pueden realizar mas adopciones.");        
-            } else {
-                List<Animal> nw ;
-                nw = cliente.getAnimalesAdoptados();
-                nw.add(animal);
-                cliente.setAnimalesAdoptados(nw);
-                System.out.println("Animal " + animal.getNombre() + " adoptado por " + cliente.getNombre() + " " + cliente.getApellido());
-            }
-        } 
-        
+        if(cliente.getAnimalesAdoptados().size() >= 2){
+            System.out.println("No se pueden realizar mas adopciones.");        
+        } else {
+        animal.getEstado().adoptar(this.getCliente(),this.getAnimal());
+        }
     }
 
     // Métodos getter y setter para acceder a los atributos privados
