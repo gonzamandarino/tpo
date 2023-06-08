@@ -3,6 +3,7 @@ package com.example;
 public class Accion {
     private String nombreAccion;
     private String descripcionAccion;
+    private Boolean completado = false;
 
     // Constructor
     public Accion(String nombreAccion, String descripcionAccion) {
@@ -15,6 +16,8 @@ public class Accion {
         // Lógica para llevar a cabo la acción
         System.out.println("Realizando acción: " + nombreAccion);
         System.out.println("Descripción de la acción: " + descripcionAccion);
+        completar();
+        System.out.println("Accion Finalizada.");
     }
 
     // Métodos getter y setter para acceder a los atributos privados
@@ -32,5 +35,13 @@ public class Accion {
 
     public void setDescripcionAccion(String descripcionAccion) {
         this.descripcionAccion = descripcionAccion;
+    }
+
+    public Boolean isCompleto(){
+        return completado;
+    }
+
+    public void completar(){
+        completado = true;
     }
 }

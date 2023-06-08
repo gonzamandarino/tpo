@@ -7,6 +7,7 @@ public class Animal {
     private double peso;
     private double condicion;
     private Estado estado;
+    private Estado estadoAnterior;
 
     // Constructor
     public Animal(String nombre, int edad, double altura, double peso, double condicion, Estado estado) {
@@ -16,6 +17,7 @@ public class Animal {
         this.peso = peso;
         this.condicion = condicion;
         this.estado = estado;
+        this.estadoAnterior = estado;
     }
 
     // Métodos getter y setter para acceder a los atributos privados
@@ -65,6 +67,10 @@ public class Animal {
 
     public void setEstado(Estado e) {
         this.estado = e;
+    }
+
+    public Estado getEstadoAnterior() {
+        return estadoAnterior;
     }
 
     public void adoptar(Cliente c){

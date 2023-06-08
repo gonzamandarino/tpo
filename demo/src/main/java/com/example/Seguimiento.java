@@ -56,6 +56,6 @@ public class Seguimiento {
 
     // Método para cambiar el recordatorio
     public void cambiarRecordatorio(Recordatorio r) {
-        this.recordatorio = r;
+        setRecordatorio(r);
     }
 }

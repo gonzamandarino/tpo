@@ -1,24 +1,56 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class TipoTratamiento implements TipoAlarma {
-    private Date fechaInicio;
-    private Date fechaFin;
-    private String comentario;
-
-    public TipoTratamiento(Date fechaInicio, Date fechaFin, String comentario) {
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.comentario = comentario;
+public class TipoTratamiento {
+    private List<Accion> controles = new ArrayList<>();;
+    private List<Veterinario> veterinarios = new ArrayList<>();;
+    private List<String> registro = new ArrayList<>();;
+    private boolean finalizado;
+    
+    // Constructor
+    public TipoTratamiento(List<Accion> controles, Veterinario vet, String registro) {
+        this.controles.add(controles);
+        this.veterinarios.add(vet);
+        this.registro.add(registro);
+        this.finalizado = false;
     }
 
-    @Override
-    public void realizarAccion() {
-        System.out.println("Realizando acción de Tratamiento");
-        System.out.println("Fecha de inicio: " + fechaInicio);
-        System.out.println("Fecha de fin: " + fechaFin);
-        System.out.println("Comentario: " + comentario);
-        // Aquí se puede implementar la lógica específica para la acción de Tratamiento
+    // Método para agregar un control al tratamiento
+    public void agregarControl(Accion control) {
+        controles.add(control);
+    }
+
+    // Método para agregar un veterinario al tratamiento
+    public void agregarVeterinario(Veterinario veterinario) {
+        veterinarios.add(veterinario);
+    }
+
+    // Método para finalizar el tratamiento
+    public void finalizarTratamiento() {
+        finalizado = true;
+    }
+
+    // Métodos getter y setter para acceder a los atributos privados
+    public List<Accion> getControles() {
+        return controles;
+    }
+
+    public List<Veterinario> getVeterinarios() {
+        return veterinarios;
+    }
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void realizarAcciones(){
+        
     }
 }

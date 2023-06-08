@@ -61,7 +61,15 @@ public class FichaMedica {
 
     // Método para cambiar el exportador
     public void cambiarExportador(Exportador e) {
-        exp = e;
+        setExp(e);
+    }
+
+    public void enTratamiento(){
+        if(getTratamientos.isFinalizado()){
+            getAnimal.setEstado(getAnimal.getEstadoAnterior());
+        }else{
+            getAnimal.setEstado(EnTratamiento);
+        }
     }
 }
 
