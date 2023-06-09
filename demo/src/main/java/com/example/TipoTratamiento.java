@@ -1,18 +1,17 @@
 package com.example;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TipoTratamiento {
+public abstract class TipoTratamiento {
     private List<Accion> controles = new ArrayList<>();;
     private List<Veterinario> veterinarios = new ArrayList<>();;
     private List<String> registro = new ArrayList<>();;
     private boolean finalizado;
     
     // Constructor
-    public TipoTratamiento(List<Accion> controles, Veterinario vet, String registro) {
-        this.controles.add(controles);
+    public TipoTratamiento(Accion control, Veterinario vet, String registro) {
+        this.controles.add(control);
         this.veterinarios.add(vet);
         this.registro.add(registro);
         this.finalizado = false;
@@ -42,7 +41,7 @@ public class TipoTratamiento {
         return veterinarios;
     }
 
-    public String getRegistro() {
+    public List<String> getRegistro() {
         return registro;
     }
 

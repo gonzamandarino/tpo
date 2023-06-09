@@ -64,12 +64,16 @@ public class FichaMedica {
         setExp(e);
     }
 
+    //TODO ESTO EN OBSERVER
     public void enTratamiento(){
-        if(getTratamientos.isFinalizado()){
-            getAnimal.setEstado(getAnimal.getEstadoAnterior());
-        }else{
-            getAnimal.setEstado(EnTratamiento);
+        for (Tratamiento tratamiento : tratamientos) {
+            if (tratamiento.isFinalizado()) {
+                getAnimal().setEstado(getAnimal().getEstadoAnterior());
+            } else {
+                getAnimal().setEstado(new EnTratamiento());
+            }
         }
+        
     }
 }
 
