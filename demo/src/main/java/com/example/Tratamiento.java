@@ -1,17 +1,21 @@
 package com.example;
 
 import java.util.Date;
+import java.util.Calendar;
+
 
 public class Tratamiento extends TipoTratamiento {
-    public Tratamiento(Accion control, Veterinario vet, String registro) {
-        super(control, vet, registro);
-        //TODO Auto-generated constructor stub
-    }
 
-
-    private Date fechaInicio = new Date();
-    private Date fechaFin;
-    private String comentario;
+        private Date fechaInicio;
+        private Date fechaFin;
+        private String comentario;
+    
+        public Tratamiento(Accion control, Veterinario vet, String registro, Date fechaInicio, String comentario) {
+            super(control, vet, registro);
+            this.fechaInicio = fechaInicio;
+            this.fechaFin = null;
+            this.comentario = comentario;
+        }
 
 
     @Override
@@ -19,6 +23,14 @@ public class Tratamiento extends TipoTratamiento {
         for (Accion accion : getControles()) {
             accion.realizarAccion();
         }
+    }
+
+    @Override
+    public void finalizarTratamiento() {
+        super.finalizarTratamiento();  
+        Calendar calendar = Calendar.getInstance();
+        this.fechaFin = calendar.getTime();
+        System.out.println("Tratamiento finalizado.");
     }
     
 }

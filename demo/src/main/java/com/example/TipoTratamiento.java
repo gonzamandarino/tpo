@@ -31,6 +31,10 @@ public abstract class TipoTratamiento {
     public void finalizarTratamiento() {
         finalizado = true;
     }
+    
+    public void realizarAcciones(){
+        
+    }
 
     // Métodos getter y setter para acceder a los atributos privados
     public List<Accion> getControles() {
@@ -49,7 +53,4 @@ public abstract class TipoTratamiento {
         return finalizado;
     }
 
-    public void realizarAcciones(){
-        
-    }
 }

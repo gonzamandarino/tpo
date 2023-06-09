@@ -3,7 +3,6 @@ package com.example;
 public class Control extends TipoTratamiento {
     public Control(Accion control, Veterinario vet, String registro) {
         super(control, vet, registro);
-        //TODO Auto-generated constructor stub
     }
 
     @Override
