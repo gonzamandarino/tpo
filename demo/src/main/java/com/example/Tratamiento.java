@@ -19,13 +19,6 @@ public class Tratamiento extends TipoTratamiento {
 
 
     @Override
-    public void realizarAcciones(){
-        for (Accion accion : getControles()) {
-            accion.realizarAccion();
-        }
-    }
-
-    @Override
     public void finalizarTratamiento() {
         super.finalizarTratamiento();  
         Calendar calendar = Calendar.getInstance();

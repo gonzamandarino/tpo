@@ -33,7 +33,9 @@ public abstract class TipoTratamiento {
     }
     
     public void realizarAcciones(){
-        
+        for (Accion accion : getControles()) {
+            accion.realizarAccion();
+        }
     }
 
     // Métodos getter y setter para acceder a los atributos privados

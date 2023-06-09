@@ -8,6 +8,7 @@ public class Control extends TipoTratamiento {
     @Override
     public void realizarAcciones() {
         System.out.println("Realizando acción de Control");
+        super.realizarAcciones();
         // Aquí se puede implementar la lógica específica para la acción de Control
         finalizarTratamiento();
     }
