@@ -3,13 +3,13 @@ package com.example;
 import java.util.List;
 
 public class FichaMedica {
-    private List<Tratamiento> tratamientos;
+    private List<TipoTratamiento> tratamientos;
     private Animal animal;
     private Seguimiento seguimiento;
     private Exportador exp;
 
     // Constructor
-    public FichaMedica(List<Tratamiento> tratamientos, Animal animal, Seguimiento seguimiento, Exportador exp) {
+    public FichaMedica(List<TipoTratamiento> tratamientos, Animal animal, Seguimiento seguimiento, Exportador exp) {
         this.tratamientos = tratamientos;
         this.animal = animal;
         this.seguimiento = seguimiento;
@@ -17,12 +17,8 @@ public class FichaMedica {
     }
 
     // Métodos getter y setter para acceder a los atributos privados
-    public List<Tratamiento> getTratamientos() {
+    public List<TipoTratamiento> getTratamientos() {
         return tratamientos;
-    }
-
-    public void setTratamientos(List<Tratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
     }
 
     public Animal getAnimal() {
@@ -66,7 +62,7 @@ public class FichaMedica {
 
     //TODO ESTO EN OBSERVER
     public void enTratamiento(){
-        for (Tratamiento tratamiento : tratamientos) {
+        for (TipoTratamiento tratamiento : tratamientos) {
             if (tratamiento.isFinalizado()) {
                 getAnimal().setEstado(getAnimal().getEstadoAnterior());
             } else {
@@ -74,6 +70,10 @@ public class FichaMedica {
             }
         }
         
+    }
+
+    public void guardarTratamiento(TipoTratamiento t){
+        this.tratamientos.add(t);
     }
 }
 

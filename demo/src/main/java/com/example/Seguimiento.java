@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Seguimiento {
     private Visitador visitador;
-    private String visita;
+    private Integer cadencia;
     private Recordatorio recordatorio;
     private List<Encuesta> encuestas;
 
     // Constructor
-    public Seguimiento(Visitador visitador, String visita, Recordatorio recordatorio, List<Encuesta> encuestas) {
+    public Seguimiento(Visitador visitador, Integer cadencia, Recordatorio recordatorio, List<Encuesta> encuestas) {
         this.visitador = visitador;
-        this.visita = visita;
+        this.cadencia = cadencia;
         this.recordatorio = recordatorio;
         this.encuestas = encuestas;
     }
@@ -25,12 +25,12 @@ public class Seguimiento {
         this.visitador = visitador;
     }
 
-    public String getVisita() {
-        return visita;
+    public Integer getCadencia() {
+        return cadencia;
     }
 
-    public void setVisita(String visita) {
-        this.visita = visita;
+    public void setCadencia(Integer c) {
+        this.cadencia = c;
     }
 
     public Recordatorio getRecordatorio() {
