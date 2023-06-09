@@ -12,6 +12,12 @@ public class Encuesta {
         this.ambiente = ambiente;
     }
 
+    public void responderEncuesta(Respuesta respuestaEstado, Respuesta respuestaLimpieza, Respuesta respuestaAmbiente) {
+        setEstado(respuestaEstado);
+        setLimpieza(respuestaLimpieza);
+        setAmbiente(respuestaAmbiente);
+    }
+
     // Métodos getter y setter para acceder a los atributos privados
     public Respuesta getEstado() {
         return estado;

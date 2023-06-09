@@ -7,6 +7,7 @@ public class Seguimiento {
     private Integer cadencia;
     private Recordatorio recordatorio;
     private List<Encuesta> encuestas;
+    private Boolean finalizado = false;
 
     // Constructor
     public Seguimiento(Visitador visitador, Integer cadencia, Recordatorio recordatorio, List<Encuesta> encuestas) {
@@ -14,6 +15,24 @@ public class Seguimiento {
         this.cadencia = cadencia;
         this.recordatorio = recordatorio;
         this.encuestas = encuestas;
+    }
+    
+    // Método para recordar partes
+    public void recordarPartes(Cliente c, int dias) {
+        recordatorio.recordar(visitador, c, dias);
+    }
+
+    // Método para cambiar el recordatorio
+    public void cambiarRecordatorio(Recordatorio r) {
+        setRecordatorio(r);
+    }
+
+    public void agregarEncuesta(Encuesta e){
+        this.encuestas.add(e);
+    }
+
+    public void terminarSeguimiento(){
+        this.finalizado = true;
     }
 
     // Métodos getter y setter para acceder a los atributos privados
@@ -49,13 +68,8 @@ public class Seguimiento {
         this.encuestas = encuestas;
     }
 
-    // Método para recordar partes
-    public void recordarPartes(Cliente c, int dias) {
-        recordatorio.recordar(visitador, c, dias);
+    public Boolean isFinalizado(){
+        return finalizado;
     }
 
-    // Método para cambiar el recordatorio
-    public void cambiarRecordatorio(Recordatorio r) {
-        setRecordatorio(r);
-    }
 }

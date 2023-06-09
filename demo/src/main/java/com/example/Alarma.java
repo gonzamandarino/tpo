@@ -31,6 +31,15 @@ public class Alarma {
             accion.realizarAccion();
         }
     }
+    
+    // Método para actualizar la alarma con nuevos valores
+    public void actualizarAlarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoAlarma tipo, Notificador notif) {
+        setPeriodicidad(periodicidad);
+        setAcciones(acciones);
+        setFecha_creacion(fecha_creacion);
+        setTipo(tipo);
+        setNotif(notif);
+    }
 
     // Métodos getter y setter para acceder a los atributos privados
     public Integer getPeriodicidad() {
