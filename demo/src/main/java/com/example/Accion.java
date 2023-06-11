@@ -13,7 +13,6 @@ public class Accion {
 
     // Método para realizar la acción
     public void realizarAccion() {
-        // Lógica para llevar a cabo la acción
         System.out.println("Realizando acción: " + nombreAccion);
         System.out.println("Descripción de la acción: " + descripcionAccion);
         completar();

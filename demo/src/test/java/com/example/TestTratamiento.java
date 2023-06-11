@@ -1,26 +1,29 @@
 package com.example;
 
-import java.util.Date;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Test;
 
 public class TestTratamiento {
+
     @Test
     public void testRealizarAcciones() {
-        Accion control = new Accion("Control de temperatura", "Realizar medición y ajuste de la temperatura");
-        Veterinario vet = new Veterinario("Dr. Juan Perez", "juan.perez@example.com");
-        String registro = "Registro de temperatura diario";
-        Date fechaInicio = new Date();
-        String comentario = "Tratamiento exitoso";
+        Accion accion1 = new Accion("Accion 1", "Descripcion 1");
+        Accion accion2 = new Accion("Accion 2", "Descripcion 2");
 
-        Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio, comentario);
+        Tratamiento tratamiento = new Tratamiento(accion1, new Veterinario("", ""), "", new Date(), "");
+
+        tratamiento.agregarControl(accion2);
 
         tratamiento.realizarAcciones();
 
         // Verificar que las acciones se hayan realizado correctamente
         for (Accion accion : tratamiento.getControles()) {
-            Assert.assertTrue(accion.isCompleto());
+            assertTrue(accion.isCompleto());
         }
     }
 
@@ -31,12 +34,19 @@ public class TestTratamiento {
         String registro = "Registro de temperatura diario";
         Date fechaInicio = new Date();
         String comentario = "Tratamiento exitoso";
+        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
+        List<TipoTratamiento> tratamientos = new ArrayList<>();
+        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
+
 
         Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio, comentario);
+
+        fichaMedica.guardarTratamiento(tratamiento);
 
         tratamiento.finalizarTratamiento();
 
         // Verificar que el tratamiento esté finalizado
-        Assert.assertTrue(tratamiento.isFinalizado());
+        assertTrue(tratamiento.isFinalizado());
     }
 }
+

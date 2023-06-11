@@ -9,6 +9,7 @@ public class Tratamiento extends TipoTratamiento {
         private Date fechaInicio;
         private Date fechaFin;
         private String comentario;
+        private FichaMedica ficha;
     
         public Tratamiento(Accion control, Veterinario vet, String registro, Date fechaInicio, String comentario) {
             super(control, vet, registro);

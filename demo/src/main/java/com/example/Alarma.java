@@ -8,11 +8,11 @@ public class Alarma {
     private Integer periodicidad;
     private List<Accion> acciones;
     private Date fecha_creacion;
-    private TipoAlarma tipo;
+    private TipoTratamiento tipo;
     private Notificador notif;
 
     // Constructor
-    public Alarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoAlarma tipo, Notificador notif) {
+    public Alarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
         this.periodicidad = periodicidad;
         this.acciones = acciones;
         this.fecha_creacion = fecha_creacion;
@@ -33,7 +33,7 @@ public class Alarma {
     }
     
     // Método para actualizar la alarma con nuevos valores
-    public void actualizarAlarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoAlarma tipo, Notificador notif) {
+    public void actualizarAlarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
         setPeriodicidad(periodicidad);
         setAcciones(acciones);
         setFecha_creacion(fecha_creacion);
@@ -66,11 +66,11 @@ public class Alarma {
         this.fecha_creacion = fecha_creacion;
     }
 
-    public TipoAlarma getTipo() {
+    public TipoTratamiento getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoAlarma tipo) {
+    public void setTipo(TipoTratamiento tipo) {
         this.tipo = tipo;
     }
 

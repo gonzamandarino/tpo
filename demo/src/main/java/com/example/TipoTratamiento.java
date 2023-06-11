@@ -8,6 +8,7 @@ public abstract class TipoTratamiento {
     private List<Veterinario> veterinarios = new ArrayList<>();;
     private List<String> registro = new ArrayList<>();;
     private boolean finalizado;
+    private FichaMedica ficha;
     
     // Constructor
     public TipoTratamiento(Accion control, Veterinario vet, String registro) {
@@ -16,6 +17,11 @@ public abstract class TipoTratamiento {
         this.registro.add(registro);
         this.finalizado = false;
     }
+
+    public void agregarObserver(FichaMedica f){
+        this.ficha = f;
+    }
+
 
     // Método para agregar un control al tratamiento
     public void agregarControl(Accion control) {
@@ -30,6 +36,7 @@ public abstract class TipoTratamiento {
     // Método para finalizar el tratamiento
     public void finalizarTratamiento() {
         finalizado = true;
+        this.ficha.actualizarTratamientos();
     }
     
     public void realizarAcciones(){
@@ -55,4 +62,7 @@ public abstract class TipoTratamiento {
         return finalizado;
     }
 
+    public FichaMedica getObserver(){
+        return ficha;
+    }
 }
