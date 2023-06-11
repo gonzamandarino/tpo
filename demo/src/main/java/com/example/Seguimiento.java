@@ -27,7 +27,8 @@ public class Seguimiento {
         setRecordatorio(r);
     }
 
-    public void agregarEncuesta(Encuesta e){
+    public void agregarEncuesta(Encuesta e,Respuesta estado, Respuesta limpieza, Respuesta ambiente){
+        e.responderEncuesta(estado, limpieza, ambiente);
         this.encuestas.add(e);
     }
 
