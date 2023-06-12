@@ -17,7 +17,7 @@ public class TestAlarmaScheduler {
         acciones.add(accion);
     
         // Crear una instancia de Alarma con la lista de acciones
-        Alarma alarma = new Alarma(1, acciones, null, null, null);
+        Alarma alarma = new Alarma(1, null, null, null);
     
         // Crear una instancia de AlarmaScheduler
         AlarmaScheduler alarmaScheduler = new AlarmaScheduler(alarma);

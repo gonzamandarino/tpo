@@ -1,12 +1,10 @@
 package com.example;
 
 import java.util.Date;
-import java.util.List;
 
 
 public class Alarma {
     private Integer periodicidad;
-    private List<Accion> acciones;
     private Date fecha_creacion;
     private TipoTratamiento tipo;
     private Notificador notif;
@@ -14,9 +12,8 @@ public class Alarma {
     private Integer contadorNotificaciones = 0;
 
     // Constructor
-    public Alarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
+    public Alarma(Integer periodicidad, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
         this.periodicidad = periodicidad;
-        this.acciones = acciones;
         this.fecha_creacion = fecha_creacion;
         this.tipo = tipo;
         this.notif = notif;
@@ -30,15 +27,14 @@ public class Alarma {
 
     // Método para realizar las acciones asociadas a la alarma
     public void realizarAcciones() {
-        for (Accion accion : acciones) {
+        for (Accion accion : tipo.getControles()) {
             accion.realizarAccion();
         }
     }
     
     // Método para actualizar la alarma con nuevos valores
-    public void actualizarAlarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
+    public void actualizarAlarma(Integer periodicidad, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
         setPeriodicidad(periodicidad);
-        setAcciones(acciones);
         setFecha_creacion(fecha_creacion);
         setTipo(tipo);
         setNotif(notif);
@@ -57,13 +53,6 @@ public class Alarma {
         this.periodicidad = periodicidad;
     }
 
-    public List<Accion> getAcciones() {
-        return acciones;
-    }
-
-    public void setAcciones(List<Accion> acciones) {
-        this.acciones = acciones;
-    }
 
     public Date getFecha_creacion() {
         return fecha_creacion;
