@@ -9,7 +9,7 @@ public class Notificador {
 
     // Método para notificar
     public void notificar() {
-        n.notificar();
+        //n.notificar();
     }
 
     // Método para cambiar el adaptador de notificación

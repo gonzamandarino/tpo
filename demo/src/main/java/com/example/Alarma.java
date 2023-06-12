@@ -10,6 +10,8 @@ public class Alarma {
     private Date fecha_creacion;
     private TipoTratamiento tipo;
     private Notificador notif;
+    //para testeos
+    private Integer contadorNotificaciones = 0;
 
     // Constructor
     public Alarma(Integer periodicidad, List<Accion> acciones, Date fecha_creacion, TipoTratamiento tipo, Notificador notif) {
@@ -22,7 +24,8 @@ public class Alarma {
 
     // Método para notificar la alarma
     public void notificar() {
-        notif.notificar();
+        contadorNotificaciones++;
+        //notif.notificar();
     }
 
     // Método para realizar las acciones asociadas a la alarma
@@ -42,6 +45,10 @@ public class Alarma {
     }
 
     // Métodos getter y setter para acceder a los atributos privados
+    public Integer getContador(){
+        return contadorNotificaciones;
+    }
+    
     public Integer getPeriodicidad() {
         return periodicidad;
     }
