@@ -12,7 +12,7 @@ public class TestSeguimientoScheduler {
     @Test
     public void testRecordarPartesScheduler() throws InterruptedException {
         // Crea un seguimiento con un recordatorio de correo electrónico
-        Visitador visitador = new Visitador("Dr. Juan Perez", "juan.perez@example.com");
+        Visitador visitador = new Visitador("Dr. Juan Perez", "juan.perez@example.com","11");
         Recordatorio recordatorio = new RecordatorioEmail();
         final Seguimiento seguimiento = new Seguimiento(visitador, 3, recordatorio,null);
 

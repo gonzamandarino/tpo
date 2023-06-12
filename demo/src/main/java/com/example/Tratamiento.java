@@ -8,14 +8,12 @@ public class Tratamiento extends TipoTratamiento {
 
         private Date fechaInicio;
         private Date fechaFin;
-        private String comentario;
         private FichaMedica ficha;
     
-        public Tratamiento(Accion control, Veterinario vet, String registro, Date fechaInicio, String comentario) {
+        public Tratamiento(Accion control, Veterinario vet, String registro, Date fechaInicio) {
             super(control, vet, registro);
             this.fechaInicio = fechaInicio;
             this.fechaFin = null;
-            this.comentario = comentario;
         }
 
 

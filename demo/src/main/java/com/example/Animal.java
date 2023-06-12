@@ -20,6 +20,10 @@ public class Animal {
         this.estadoAnterior = estado;
     }
 
+    public void adoptar(Cliente c){
+        getEstado().adoptar(c,this);
+    }
+
     // Métodos getter y setter para acceder a los atributos privados
     public String getNombre() {
         return nombre;
@@ -73,7 +77,5 @@ public class Animal {
         return estadoAnterior;
     }
 
-    public void adoptar(Cliente c){
-        getEstado().adoptar(c,this);
-    }
+
 }

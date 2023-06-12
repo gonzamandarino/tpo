@@ -24,13 +24,12 @@ public class TestAlarma {
         @Test
         public void testRealizarAcciones() {
             Accion control = new Accion("Control de temperatura", "Realizar medición y ajuste de la temperatura");
-            Veterinario vet = new Veterinario("Dr. Juan Perez", "juan.perez@example.com");
+            Veterinario vet = new Veterinario("Dr. Juan Perez", "juan.perez@example.com","11");
             String registro = "Registro de temperatura diario";
             Date fechaInicio = new Date();
-            String comentario = "Tratamiento exitoso";
     
     
-            Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio, comentario);
+            Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio);
     
             // Crear una instancia de Alarma con las acciones
             Alarma alarma = new Alarma(1, new Date(), tratamiento, null);

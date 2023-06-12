@@ -15,7 +15,7 @@ public class TestTratamiento {
         Accion accion1 = new Accion("Accion 1", "Descripcion 1");
         Accion accion2 = new Accion("Accion 2", "Descripcion 2");
 
-        Tratamiento tratamiento = new Tratamiento(accion1, new Veterinario("", ""), "", new Date(), "");
+        Tratamiento tratamiento = new Tratamiento(accion1, new Veterinario("", "","11"), "", new Date());
 
         tratamiento.agregarControl(accion2);
 
@@ -30,7 +30,7 @@ public class TestTratamiento {
     @Test
     public void testFinalizarTratamiento() {
         Accion control = new Accion("Control de temperatura", "Realizar medición y ajuste de la temperatura");
-        Veterinario vet = new Veterinario("Dr. Juan Perez", "juan.perez@example.com");
+        Veterinario vet = new Veterinario("Dr. Juan Perez", "juan.perez@example.com","11");
         String registro = "Registro de temperatura diario";
         Date fechaInicio = new Date();
         String comentario = "Tratamiento exitoso";
@@ -39,7 +39,7 @@ public class TestTratamiento {
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 
 
-        Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio, comentario);
+        Tratamiento tratamiento = new Tratamiento(control, vet, registro, fechaInicio);
 
         fichaMedica.guardarTratamiento(tratamiento);
 

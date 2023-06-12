@@ -12,7 +12,7 @@ public class TestSeguimiento {
 
     @Test
     public void testRecordarPartes_Email() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com");
+        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
@@ -37,7 +37,7 @@ public class TestSeguimiento {
 
     @Test
     public void testCambiarRecordatorio() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com");
+        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
@@ -52,7 +52,7 @@ public class TestSeguimiento {
 
     @Test
     public void testAgregarEncuesta() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com");
+        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
@@ -72,7 +72,7 @@ public class TestSeguimiento {
 
     @Test
     public void testTerminarSeguimiento() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com");
+        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();

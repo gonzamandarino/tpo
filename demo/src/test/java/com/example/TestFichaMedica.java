@@ -16,7 +16,7 @@ public class TestFichaMedica {
         List<TipoTratamiento> tratamientos = new ArrayList<>();
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", ""), "", new Date(), "");
+        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
         tratamientos.add(tratamiento);
 
         fichaMedica.actualizarTratamientos();
@@ -30,7 +30,7 @@ public class TestFichaMedica {
         List<TipoTratamiento> tratamientos = new ArrayList<>();
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", ""), "", new Date(), "");
+        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
         fichaMedica.guardarTratamiento(tratamiento);
         tratamiento.finalizarTratamiento();
 
@@ -45,7 +45,7 @@ public class TestFichaMedica {
         List<TipoTratamiento> tratamientos = new ArrayList<>();
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", ""), "", new Date(), "");
+        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
         fichaMedica.guardarTratamiento(tratamiento);
 
         assertEquals(1, tratamientos.size());
