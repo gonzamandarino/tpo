@@ -36,7 +36,6 @@ public abstract class TipoTratamiento {
     // Método para finalizar el tratamiento
     public void finalizarTratamiento() {
         finalizado = true;
-        this.ficha.actualizarTratamientos();
     }
     
     public void realizarAcciones(){

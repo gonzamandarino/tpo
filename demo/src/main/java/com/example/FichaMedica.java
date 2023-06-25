@@ -14,29 +14,6 @@ public class FichaMedica {
         this.animal = animal;
         this.seguimiento = seguimiento;
         this.exp = exp;
-        if (tratamientos != null ){
-            observar();
-            actualizarTratamientos();
-        }
-    }
-
-    public void observar(){
-        for(TipoTratamiento tratamiento: tratamientos){
-            if (tratamiento.getObserver() != null){
-            }else{
-                tratamiento.agregarObserver(this);
-            }
-        }
-    }
-
-    public void actualizarTratamientos(){
-        for (TipoTratamiento tratamiento : tratamientos) {
-            if (tratamiento.isFinalizado()) {
-                getAnimal().setEstado(getAnimal().getEstadoAnterior());
-            } else {
-                getAnimal().setEstado(new EnTratamiento());
-            }
-        }
     }
 
 
@@ -87,8 +64,6 @@ public class FichaMedica {
 
     public void guardarTratamiento(TipoTratamiento t){
         this.tratamientos.add(t);
-        observar();
-        actualizarTratamientos();
     }
 }
 

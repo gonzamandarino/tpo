@@ -11,6 +11,5 @@ public class Control extends TipoTratamiento {
         super.realizarAcciones();
         // Aquí se puede implementar la lógica específica para la acción de Control
         finalizarTratamiento();
-        super.getObserver().actualizarTratamientos();
     }
 }

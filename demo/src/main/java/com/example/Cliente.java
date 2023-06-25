@@ -25,6 +25,10 @@ public class Cliente {
         this.animalesAdoptados = animalesAdoptados;
     }
 
+    public Integer cantAnimalesAdoptados() {
+        return animalesAdoptados.size();
+    }
+
     // Métodos getter y setter para acceder a los atributos privados
     public String getNombre() {
         return nombre;

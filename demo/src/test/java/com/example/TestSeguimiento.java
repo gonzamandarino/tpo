@@ -2,11 +2,12 @@ package com.example;
 
 import org.junit.Assert;
 import org.junit.Test;
-
+import com.example.Controller.ControllerSeguimiento;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class TestSeguimiento {
 
@@ -43,10 +44,13 @@ public class TestSeguimiento {
         List<Encuesta> encuestas = new ArrayList<>();
         Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
         Recordatorio nuevoRecordatorio = new RecordatorioSMS();
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
         seguimiento.cambiarRecordatorio(nuevoRecordatorio);
 
         // Verificar que el recordatorio haya sido cambiado correctamente
+        Assert.assertEquals(nuevoRecordatorio, seguimiento.getRecordatorio());
+        controllerSeguimiento.cambiarRecordatorio(seguimiento, nuevoRecordatorio);
         Assert.assertEquals(nuevoRecordatorio, seguimiento.getRecordatorio());
     }
 
@@ -58,6 +62,7 @@ public class TestSeguimiento {
         List<Encuesta> encuestas = new ArrayList<>();
         Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
         Encuesta encuesta = new Encuesta(null,null,null);
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
         seguimiento.agregarEncuesta(encuesta, Respuesta.MALO, Respuesta.REGULAR, Respuesta.BUENO);
 
@@ -65,6 +70,13 @@ public class TestSeguimiento {
         Assert.assertEquals(1, seguimiento.getEncuestas().size());
         Assert.assertEquals(encuesta, seguimiento.getEncuestas().get(0));
         // Verificar que las respuestas se hayan establecido correctamente
+        Assert.assertEquals(Respuesta.MALO, encuesta.getEstado());
+        Assert.assertEquals(Respuesta.REGULAR, encuesta.getLimpieza());
+        Assert.assertEquals(Respuesta.BUENO, encuesta.getAmbiente());
+
+        controllerSeguimiento.agregarEncuesta(seguimiento, encuesta, Respuesta.MALO, Respuesta.REGULAR, Respuesta.BUENO);
+        Assert.assertEquals(2, seguimiento.getEncuestas().size());
+        Assert.assertEquals(encuesta, seguimiento.getEncuestas().get(1));
         Assert.assertEquals(Respuesta.MALO, encuesta.getEstado());
         Assert.assertEquals(Respuesta.REGULAR, encuesta.getLimpieza());
         Assert.assertEquals(Respuesta.BUENO, encuesta.getAmbiente());
@@ -77,10 +89,14 @@ public class TestSeguimiento {
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
         Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
         seguimiento.terminarSeguimiento();
 
         // Verificar que el seguimiento esté finalizado
+        Assert.assertTrue(seguimiento.isFinalizado());
+
+        controllerSeguimiento.terminarSeguimiento(seguimiento);
         Assert.assertTrue(seguimiento.isFinalizado());
     }
 }

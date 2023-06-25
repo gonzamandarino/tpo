@@ -6,24 +6,23 @@ public class Animal {
     private double altura;
     private double peso;
     private double condicion;
-    private Estado estado;
-    private Estado estadoAnterior;
+    private tipoAnimal tipo;
+    private boolean enTratamiento = false;
 
     // Constructor
-    public Animal(String nombre, int edad, double altura, double peso, double condicion, Estado estado) {
+    public Animal(String nombre, int edad, double altura, double peso, double condicion, tipoAnimal tipo) {
         this.nombre = nombre;
         this.edad = edad;
         this.altura = altura;
         this.peso = peso;
         this.condicion = condicion;
-        this.estado = estado;
-        this.estadoAnterior = estado;
+        this.tipo = tipo;
     }
 
-    public void adoptar(Cliente c){
-        getEstado().adoptar(c,this);
+    public void cambiarEnTratamiento() {
+        enTratamiento = !enTratamiento;
     }
-
+    
     // Métodos getter y setter para acceder a los atributos privados
     public String getNombre() {
         return nombre;
@@ -32,7 +31,7 @@ public class Animal {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
- 
+
     public int getEdad() {
         return edad;
     }
@@ -65,17 +64,21 @@ public class Animal {
         this.condicion = condicion;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public tipoAnimal getTipo() {
+        return tipo;
     }
 
-    public void setEstado(Estado e) {
-        this.estado = e;
+    public void setTipo(tipoAnimal tipo) {
+        this.tipo = tipo;
     }
 
-    public Estado getEstadoAnterior() {
-        return estadoAnterior;
+    public boolean isEnTratamiento() {
+        return enTratamiento;
     }
 
-
+    public void setEnTratamiento(boolean enTratamiento) {
+        this.enTratamiento = enTratamiento;
+    }
 }
+
+

@@ -15,15 +15,6 @@ public class Adopcion {
         this.tipoInteresado = tipoInteresado;
     }
 
-    // Método adoptar
-    public void adoptar() {
-        
-        if(cliente.getAnimalesAdoptados().size() >= 2){
-            System.out.println("No se pueden realizar mas adopciones.");        
-        } else {
-        animal.getEstado().adoptar(this.getCliente(),this.getAnimal());
-        }
-    }
 
     // Métodos getter y setter para acceder a los atributos privados
     public Cliente getCliente() {
