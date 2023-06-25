@@ -15,7 +15,6 @@ public class Adopcion {
         this.tipoInteresado = tipoInteresado;
     }
 
-
     // Métodos getter y setter para acceder a los atributos privados
     public Cliente getCliente() {
         return cliente;

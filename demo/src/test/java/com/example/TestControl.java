@@ -11,7 +11,7 @@ public class TestControl {
         Accion control = new Accion("Control de alimentación", "Realizar seguimiento y ajuste de la alimentación");
         Veterinario vet = new Veterinario("Dra. Maria Lopez", "maria.lopez@example.com","11");
         String registro = "Registro de consumo de alimentos";
-        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
+        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, tipoAnimal.DOMESTICO);
         List<TipoTratamiento> tratamientos = new ArrayList<>();
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 
@@ -35,7 +35,7 @@ public class TestControl {
         Accion control = new Accion("Control de alimentación", "Realizar seguimiento y ajuste de la alimentación");
         Veterinario vet = new Veterinario("Dra. Maria Lopez", "maria.lopez@example.com","11");
         String registro = "Registro de consumo de alimentos";
-        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
+        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, tipoAnimal.DOMESTICO);
         List<TipoTratamiento> tratamientos = new ArrayList<>();
         FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
 

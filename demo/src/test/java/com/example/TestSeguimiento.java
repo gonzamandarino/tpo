@@ -13,11 +13,10 @@ public class TestSeguimiento {
 
     @Test
     public void testRecordarPartes_Email() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
-        Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
+        Seguimiento seguimiento = new Seguimiento(cadencia, recordatorio, encuestas);
         Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
                 "123456789", "Empleado", "Tiene otras mascotas", null);
         int dias = 3;
@@ -38,11 +37,10 @@ public class TestSeguimiento {
 
     @Test
     public void testCambiarRecordatorio() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
-        Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
+        Seguimiento seguimiento = new Seguimiento( cadencia, recordatorio, encuestas);
         Recordatorio nuevoRecordatorio = new RecordatorioSMS();
         ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
@@ -56,11 +54,10 @@ public class TestSeguimiento {
 
     @Test
     public void testAgregarEncuesta() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
-        Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
+        Seguimiento seguimiento = new Seguimiento( cadencia, recordatorio, encuestas);
         Encuesta encuesta = new Encuesta(null,null,null);
         ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
@@ -84,11 +81,10 @@ public class TestSeguimiento {
 
     @Test
     public void testTerminarSeguimiento() {
-        Visitador visitador = new Visitador("John Doe", "john.doe@example.com","11");
         Integer cadencia = 7;
         Recordatorio recordatorio = new RecordatorioEmail();
         List<Encuesta> encuestas = new ArrayList<>();
-        Seguimiento seguimiento = new Seguimiento(visitador, cadencia, recordatorio, encuestas);
+        Seguimiento seguimiento = new Seguimiento(cadencia, recordatorio, encuestas);
         ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento();
 
         seguimiento.terminarSeguimiento();

@@ -3,15 +3,14 @@ package com.example;
 import java.util.List;
 
 public class Seguimiento {
-    private Visitador visitador;
     private Integer cadencia;
     private Recordatorio recordatorio;
     private List<Encuesta> encuestas;
     private Boolean finalizado = false;
 
     // Constructor
-    public Seguimiento(Visitador visitador, Integer cadencia, Recordatorio recordatorio, List<Encuesta> encuestas) {
-        this.visitador = visitador;
+    public Seguimiento(Integer cadencia, Recordatorio recordatorio, List<Encuesta> encuestas) {
+
         this.cadencia = cadencia;
         this.recordatorio = recordatorio;
         this.encuestas = encuestas;
@@ -19,7 +18,7 @@ public class Seguimiento {
     
     // Método para recordar partes
     public void recordarPartes(Cliente c, int dias) {
-        recordatorio.recordar(visitador, c, dias);
+        recordatorio.recordar(c, dias);
     }
 
     // Método para cambiar el recordatorio
@@ -37,14 +36,6 @@ public class Seguimiento {
     }
 
     // Métodos getter y setter para acceder a los atributos privados
-    public Visitador getVisitador() {
-        return visitador;
-    }
-
-    public void setVisitador(Visitador visitador) {
-        this.visitador = visitador;
-    }
-
     public Integer getCadencia() {
         return cadencia;
     }
