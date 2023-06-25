@@ -1,55 +1,66 @@
 package com.example;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import com.example.Controller.ControllerFichaMedica;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.junit.Test;
 
 public class TestFichaMedica {
 
+
     @Test
-    public void testActualizarTratamientos_AnimalEnTratamiento() {
-        Animal animal = new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
+    public void testExportarFichaMedica() {
         List<TipoTratamiento> tratamientos = new ArrayList<>();
-        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
+        Animal animal = new Animal("Max", 5, 0.8, 10.0, 4.5, tipoAnimal.DOMESTICO);
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Exportador exportador = Mockito.mock(Exportador.class);
 
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
-        tratamientos.add(tratamiento);
+        ControllerFichaMedica controller = new ControllerFichaMedica();
 
-        fichaMedica.actualizarTratamientos();
+        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, seguimiento, exportador);
 
-        assertEquals(EnTratamiento.class, animal.getEstado().getClass());
+        controller.exportarFichaMedica(fichaMedica);
+
+        Mockito.verify(exportador, Mockito.times(1)).exportar();
+    }
+
+
+    @Test
+    public void testAgregarTratamiento() {
+        List<TipoTratamiento> tratamientos = new ArrayList<>();
+        Animal animal = Mockito.mock(Animal.class);
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Exportador exportador = Mockito.mock(Exportador.class);
+
+        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, seguimiento, exportador);
+        ControllerFichaMedica controller = new ControllerFichaMedica();
+
+        TipoTratamiento tratamiento = Mockito.mock(TipoTratamiento.class);
+        controller.guardarTratamiento(fichaMedica, tratamiento);
+
+        List<TipoTratamiento> tratamientosActuales = fichaMedica.getTratamientos();
+        Assert.assertEquals(1, tratamientosActuales.size());
+        Assert.assertTrue(tratamientosActuales.contains(tratamiento));
     }
 
     @Test
-    public void testActualizarTratamientos_AnimalEstadoAnterior() {
-        Animal animal =  new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
+    public void testCambiarExportador() {
         List<TipoTratamiento> tratamientos = new ArrayList<>();
-        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
+        Animal animal = Mockito.mock(Animal.class);
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Exportador exportador = Mockito.mock(Exportador.class);
 
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
-        fichaMedica.guardarTratamiento(tratamiento);
-        tratamiento.finalizarTratamiento();
+        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, seguimiento, exportador);
+        ControllerFichaMedica controller = new ControllerFichaMedica();
 
-        fichaMedica.actualizarTratamientos();
+        Exportador nuevoExportador = Mockito.mock(Exportador.class);
+        controller.cambiarExportador(fichaMedica, nuevoExportador);
 
-        assertEquals(Domestico.class, animal.getEstado().getClass());
+        Exportador exportadorActual = fichaMedica.getExp();
+        Assert.assertEquals(nuevoExportador, exportadorActual);
     }
-
-    @Test
-    public void testGuardarTratamiento() {
-        Animal animal =  new Animal("Roman", 0, 1.5, 5, 10.0, new Domestico());
-        List<TipoTratamiento> tratamientos = new ArrayList<>();
-        FichaMedica fichaMedica = new FichaMedica(tratamientos, animal, null, null);
-
-        Tratamiento tratamiento = new Tratamiento(new Accion("Accion 1", "Descripcion 1"), new Veterinario("", "","11"), "", new Date());
-        fichaMedica.guardarTratamiento(tratamiento);
-
-        assertEquals(1, tratamientos.size());
-        assertEquals(fichaMedica, tratamiento.getObserver());
-    }
-
 }
