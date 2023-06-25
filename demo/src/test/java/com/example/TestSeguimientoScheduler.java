@@ -1,46 +1,80 @@
 package com.example;
 
-import org.junit.Assert;
+
+import com.example.Controller.ControllerSeguimiento;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertTrue;
 
-//Por motivos de prueba, se cambia la cadencia de días a segundos.
 public class TestSeguimientoScheduler {
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream originalOutput = System.out;
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @After
+    public void tearDown() {
+        System.setOut(originalOutput);
+    }
+
     @Test
-    public void testRecordarPartesScheduler() throws InterruptedException {
-        // Crea un seguimiento con un recordatorio de correo electrónico
-        Recordatorio recordatorio = new RecordatorioEmail();
-        final Seguimiento seguimiento = new Seguimiento(3, recordatorio,null);
+    public void testIniciarRecordatorio() throws InterruptedException {
+        // Arrange
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Cliente cliente = Mockito.mock(Cliente.class);
+        int dias = 1;
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento(seguimiento, cliente, dias);
 
-        // Crea un cliente de prueba
-        final Cliente cliente = new Cliente("Juan", "Pérez", "Casado", "juan@example.com",
-        "123456789", "Empleado", "Tiene otras mascotas", null);
+        // Act
+        controllerSeguimiento.iniciarRecordatorio();
 
-        // Crea un executor de un solo hilo para el scheduler
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        // Espera un tiempo suficiente para que se active el recordatorio
+        TimeUnit.SECONDS.sleep(2);
 
-        // Variable para contar las veces que se activa el recordatorio
-        final AtomicInteger contadorRecordatorio = new AtomicInteger(0);
+        // Assert
+        Mockito.verify(seguimiento, Mockito.atLeastOnce()).recordarPartes(cliente);
+    }
 
-        // Programa la tarea del scheduler
-        executor.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                seguimiento.recordarPartes(cliente,3);
-                contadorRecordatorio.incrementAndGet();
-            }
-        }, 0, 1, TimeUnit.SECONDS);
+    @Test
+    public void testDetenerRecordatorioDiario() {
+        // Arrange
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Cliente cliente = Mockito.mock(Cliente.class);
+        int dias = 7;
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento(seguimiento, cliente, dias);
 
-        // Espera un tiempo suficiente para que se active el recordatorio varias veces
-        TimeUnit.SECONDS.sleep(4);
+        // Act
+        controllerSeguimiento.detenerRecordatorioDiario();
 
-        // Detiene el scheduler y espera a que se completen las tareas pendientes
-        executor.shutdown();
+        // Assert
+        assertTrue(outputStreamCaptor.toString().trim().isEmpty());
+    }
 
-        // Verifica que el recordatorio se haya activado al menos 3 veces (según la cadencia establecida)
-        Assert.assertTrue(contadorRecordatorio.get() >= 3);
+    @Test
+    public void testCambiarRecordatorio() {
+        // Arrange
+        Seguimiento seguimiento = Mockito.mock(Seguimiento.class);
+        Cliente cliente = Mockito.mock(Cliente.class);
+        int dias = 7;
+        ControllerSeguimiento controllerSeguimiento = new ControllerSeguimiento(seguimiento, cliente, dias);
+
+        Recordatorio nuevoRecordatorio = Mockito.mock(Recordatorio.class);
+
+        // Act
+        controllerSeguimiento.cambiarRecordatorio(nuevoRecordatorio);
+
+        // Assert
+        Mockito.verify(seguimiento, Mockito.times(1)).cambiarRecordatorio(nuevoRecordatorio);
     }
 }

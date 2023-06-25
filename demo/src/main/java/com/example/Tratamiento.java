@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 public class Tratamiento extends TipoTratamiento {
 
-        private Date fechaInicio;
+        private Date fechaInicio ;
         private Date fechaFin;
         private FichaMedica ficha;
     

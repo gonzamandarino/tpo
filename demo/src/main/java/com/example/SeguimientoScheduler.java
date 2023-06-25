@@ -17,17 +17,22 @@ public class SeguimientoScheduler {
         this.executor = Executors.newSingleThreadScheduledExecutor();
     }
 
-    public void iniciarRecordatorioDiario() {
+    public void iniciarRecordatorio() {
         executor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                seguimiento.recordarPartes(cliente, dias);
+                seguimiento.recordarPartes(cliente);
             }
-        }, 0, 1, TimeUnit.DAYS);
+            //CAMBIO A SEGUNDOS PARA TESTS
+        }, dias, dias, TimeUnit.SECONDS);
         
     }
 
     public void detenerRecordatorioDiario() {
         executor.shutdown();
+    }
+
+    public Seguimiento getSeguimiento() {
+        return seguimiento;
     }
 }

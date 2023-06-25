@@ -1,5 +1,5 @@
 package com.example;
 
 public interface Recordatorio {
-    void recordar(Cliente c, int dias);
+    void recordar(Cliente c);
 }

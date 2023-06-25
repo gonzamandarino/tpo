@@ -17,8 +17,8 @@ public class Seguimiento {
     }
     
     // Método para recordar partes
-    public void recordarPartes(Cliente c, int dias) {
-        recordatorio.recordar(c, dias);
+    public void recordarPartes(Cliente c) {
+        recordatorio.recordar(c);
     }
 
     // Método para cambiar el recordatorio

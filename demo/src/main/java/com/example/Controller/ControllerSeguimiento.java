@@ -1,30 +1,28 @@
 package com.example.Controller;
 
-import com.example.Encuesta;
+import com.example.Cliente;
 import com.example.Recordatorio;
-import com.example.Respuesta;
 import com.example.Seguimiento;
+import com.example.SeguimientoScheduler;
 
 public class ControllerSeguimiento {
-    public void agregarEncuesta(Seguimiento seguimiento, Encuesta encuesta, Respuesta estado,
-                                Respuesta limpieza, Respuesta ambiente) {
 
-        encuesta.responderEncuesta(estado, limpieza, ambiente);
+    private SeguimientoScheduler seguimientoScheduler;
 
-        seguimiento.getEncuestas().add(encuesta);
+    public ControllerSeguimiento(Seguimiento seguimiento, Cliente cliente, int dias) {
 
-        System.out.println("Encuesta agregada exitosamente.");
+        this.seguimientoScheduler = new SeguimientoScheduler(seguimiento, cliente, dias);
     }
 
-    public void terminarSeguimiento(Seguimiento seguimiento) {
-
-        seguimiento.terminarSeguimiento();
-
-        System.out.println("Seguimiento finalizado.");
+    public void iniciarRecordatorio() {
+        seguimientoScheduler.iniciarRecordatorio();
     }
 
-    public void cambiarRecordatorio(Seguimiento seguimiento, Recordatorio nuevoRecordatorio) {
-        seguimiento.setRecordatorio(nuevoRecordatorio);
-        System.out.println("Recordatorio cambiado exitosamente.");
+    public void detenerRecordatorioDiario() {
+        seguimientoScheduler.detenerRecordatorioDiario();
+    }
+
+    public void cambiarRecordatorio(Recordatorio nuevoRecordatorio) {
+        seguimientoScheduler.getSeguimiento().cambiarRecordatorio(nuevoRecordatorio);
     }
 }
